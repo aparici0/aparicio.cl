@@ -1,109 +1,112 @@
-@font-face {
-    font-family: 'Mukta';
-    font-style: normal;
-    font-weight: 300;
-    font-display: swap;
-    src: local(''),
-        url('../fonts/Mukta-Light.woff2') format('woff2'), 
-        url('../fonts/Mukta-Light.woff') format('woff');
-  }
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
-  @font-face {
-    font-family: 'Mukta';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: local(''),
-        url('../fonts/Mukta-Regular.woff2') format('woff2'), 
-        url('../fonts/Mukta-Regular.woff') format('woff');
-  }
+.inter-tight-thin {
+  font-family: "Inter Tight", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+}
 
-  @font-face {
-    font-family: 'Mukta';
-    font-style: normal;
-    font-weight: 500;
-    font-display: swap;
-    src: local(''),
-        url('../fonts/Mukta-Medium.woff2') format('woff2'),
-        url('../fonts/Mukta-Medium.woff') format('woff');
-  }
+.inter-tight-extralight {
+  font-family: "Inter Tight", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
 
-  @font-face {
-    font-family: 'Mukta';
-    font-style: normal;
-    font-weight: 600;
-    font-display: swap;
-    src: local(''),
-        url('../fonts/Mukta-SemiBold.woff2') format('woff2'),
-        url('../fonts/Mukta-SemiBold.woff') format('woff');
-  }
+.inter-tight-light {
+  font-family: "Inter Tight", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
 
-  @font-face {
-    font-family: 'Mukta';
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: local(''),
-        url('../fonts/Mukta-Bold.woff2') format('woff2'),
-        url('../fonts/Mukta-Bold.woff2') format('woff');
-  }
+.inter-tight-regular {
+  font-family: "Inter Tight", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
 
-  @font-face {
-    font-family: 'Alexandria';
-    font-style: normal;
-    font-weight: 200;
-    font-display: swap;
-    src: local(''),
-        url('../fonts/Alexandria-ExtraLight.woff2') format('woff2'),
-        url('../fonts/Alexandria-ExtraLight.woff') format('woff');
-  }
+.inter-tight-medium {
+  font-family: "Inter Tight", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
 
-  @font-face {
-    font-family: 'Alexandria';
-    font-style: normal;
-    font-weight: 300;
-    font-display: swap;
-    src: local(''),
-        url('../fonts/Alexandria-Light.woff2') format('woff2'),
-        url('../fonts/Alexandria-Light.woff') format('woff');
-  }
+.inter-tight-semibold {
+  font-family: "Inter Tight", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
 
-  @font-face {
-    font-family: 'Alexandria';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: local(''),
-        url('../fonts/Alexandria-Regular.woff2') format('woff2'),
-        url('../fonts/Alexandria-Regular.woff') format('woff');
-  }
+.inter-tight-bold {
+  font-family: "Inter Tight", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
 
-  @font-face {
-    font-family: 'Alexandria';
-    font-style: normal;
-    font-weight: 500;
-    font-display: swap;
-    src: local(''),
-        url('../fonts/Alexandria-Medium.woff2') format('woff2'),
-        url('../fonts/Alexandria-Medium.woff') format('woff');
-  }
+.inter-tight-extrabold {
+  font-family: "Inter Tight", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+}
 
-  @font-face {
-    font-family: 'Alexandria';
-    font-style: normal;
-    font-weight: 600;
-    font-display: swap;
-    src: local(''),
-        url('../fonts/Alexandria-SemiBold.woff2') format('woff2'),
-        url('../fonts/Alexandria-SemiBold.woff') format('woff');
-  }
+.inter-tight-black {
+  font-family: "Inter Tight", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+}
 
-  @font-face {
-    font-family: 'Alexandria';
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: local(''),
-        url('../fonts/Alexandria-Bold.woff2') format('woff2'),
-        url('../fonts/Alexandria-Bold.woff') format('woff');
-  }
+.ubuntu-light {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.ubuntu-regular {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ubuntu-medium {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.ubuntu-bold {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.ubuntu-light-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.ubuntu-regular-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.ubuntu-medium-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.ubuntu-bold-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
