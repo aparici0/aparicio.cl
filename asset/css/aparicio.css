@@ -67,6 +67,7 @@ p {
 .card { border-radius: 26px; border: none; }
 .card .card-body { padding: 12px 12px 24px 12px; }
 .card .img-wrapper {
+  width: 100%;
   padding: 12px;
   border-radius: 14px;
   overflow: hidden;   /* Esto es la clave */
@@ -75,6 +76,8 @@ p {
 }
 .card .img-wrapper img {
   clip-path: inset(0 round 14px);
+  width: 100%;
+  height: auto;
 }
 
 
@@ -214,7 +217,7 @@ background: linear-gradient(87deg, rgba(252, 58, 35, 1) 0%, rgba(251, 0, 64, 1) 
   outline: none;
   box-shadow: none;
 }
-.navbar-toggler { border: none; color: #eee; }
+.navbar-toggler { border: none; color: #1E2435; }
 
 .hero-titulo { font-size: 4rem; font-family: var(--bs-font-titular); font-weight: 300; color: #eee; }
 .hero-titulo b { font-weight: 600 }
