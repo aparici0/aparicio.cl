@@ -233,7 +233,9 @@ background: linear-gradient(87deg, rgba(252, 58, 35, 1) 0%, rgba(251, 0, 64, 1) 
   outline: none;
   box-shadow: none;
 }
-.navbar-toggler { border: none; color: #1E2435; }
+
+#main .navbar-toggler { border: none; color: #1E2435; }
+#mainNavbar .navbar-toggler { border: none; color: #EEF1F6; }
 
 .hero-titulo { font-size: 4rem; font-family: var(--bs-font-titular); font-weight: 300; color: #eee; }
 .hero-titulo b { font-weight: 600 }
