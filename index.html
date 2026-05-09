@@ -45,6 +45,7 @@
 
 .marquee {
   display: flex;
+  width: 100%;
   overflow: hidden;
   user-select: none;
   gap: var(--gap);
@@ -61,9 +62,9 @@
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
   gap: var(--gap);
-  min-width: 100%;
+  width: max-content;  /* reemplaza min-width: auto */
   animation: scroll-x var(--duration) linear infinite;
 }
 
@@ -87,10 +88,10 @@
 
 @keyframes scroll-x {
   from {
-    transform: translateX(var(--scroll-start));
+    transform: translateX(0);
   }
   to {
-    transform: translateX(var(--scroll-end));
+    transform: translateX(calc(-100% - var(--gap)));
   }
 }
 
@@ -307,27 +308,29 @@
                             <article class="wrapper">
                                 <div class="marquee">
                                     <div class="marquee__group">
-                                    <img src="asset/img/logos/logo1.svg" alt="Logotipo de Duoc UC">
-                                    <img src="asset/img/logos/logo2.svg" alt="Logotipo de Ingeniu Solution">
-                                    <img src="asset/img/logos/logo3.svg" alt="Logotipo de De Buena Mano">
-                                    <img src="asset/img/logos/logo4.svg" alt="Logotipo de PUCV">
-                                    <img src="asset/img/logos/logo5.svg" alt="Logotipo de Trapananda Ediciones">
-                                    <img src="asset/img/logos/logo6.svg" alt="Logotipo de Cuero Market">
-                                    <img src="asset/img/logos/logo7.svg" alt="Logotipo de Big Sur Energy">
-                                    <img src="asset/img/logos/logo8.svg" alt="Logotipo de Rincón Terapias">
+                                        <img src="asset/img/logos/logo7.svg" alt="Logotipo de Big Sur Energy">
+                                        <img src="asset/img/logos/logo1.svg" alt="Logotipo de Duoc UC">
+                                        <img src="asset/img/logos/logo2.svg" alt="Logotipo de Ingeniu Solution">
+                                        <img src="asset/img/logos/logo3.svg" alt="Logotipo de De Buena Mano">
+                                        <img src="asset/img/logos/logo4.svg" alt="Logotipo de PUCV">
+                                        <img src="asset/img/logos/logo5.svg" alt="Logotipo de Trapananda Ediciones">
+                                        <img src="asset/img/logos/logo6.svg" alt="Logotipo de Cuero Market">
+                                        <img src="asset/img/logos/logo8.svg" alt="Logotipo de Rincón Terapias">
                                     </div>
 
                                     <div aria-hidden="true" class="marquee__group">
-                                    <img src="asset/img/logos/logo1.svg" alt="Logotipo de Duoc UC">
-                                    <img src="asset/img/logos/logo2.svg" alt="Logotipo de Ingeniu Solution">
-                                    <img src="asset/img/logos/logo3.svg" alt="Logotipo de De Buena Mano">
-                                    <img src="asset/img/logos/logo4.svg" alt="Logotipo de PUCV">
-                                    <img src="asset/img/logos/logo5.svg" alt="Logotipo de Trapananda Ediciones">
-                                    <img src="asset/img/logos/logo6.svg" alt="Logotipo de Cuero Market">
-                                    <img src="asset/img/logos/logo7.svg" alt="Logotipo de Big Sur Energy">
+                                        <img src="asset/img/logos/logo7.svg" alt="Logotipo de Big Sur Energy">
+                                        <img src="asset/img/logos/logo1.svg" alt="Logotipo de Duoc UC">
+                                        <img src="asset/img/logos/logo2.svg" alt="Logotipo de Ingeniu Solution">
+                                        <img src="asset/img/logos/logo3.svg" alt="Logotipo de De Buena Mano">
+                                        <img src="asset/img/logos/logo4.svg" alt="Logotipo de PUCV">
+                                        <img src="asset/img/logos/logo5.svg" alt="Logotipo de Trapananda Ediciones">
+                                        <img src="asset/img/logos/logo6.svg" alt="Logotipo de Cuero Market">
+                                        <img src="asset/img/logos/logo8.svg" alt="Logotipo de Rincón Terapias">
                                     </div>
                                 </div>
                             </article>
+
 
 
                         </div>
