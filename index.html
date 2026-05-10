@@ -369,14 +369,17 @@
       const control = document.getElementById("direction-toggle");
       const wrapper = document.querySelector(".wrapper");
 
-      control.addEventListener("click", () => {
-        ["toggle--vertical", "wrapper--vertical"].forEach((cls, i) =>
-          [control, wrapper][i].classList.toggle(cls),
-        );
-        wrapper
-          .querySelectorAll(".marquee")
-          .forEach((m) => m.classList.toggle("marquee--vertical"));
-      });
+      // ✅ Solo ejecuta si ambos elementos existen
+      if (control && wrapper) {
+        control.addEventListener("click", () => {
+          ["toggle--vertical", "wrapper--vertical"].forEach((cls, i) =>
+            [control, wrapper][i].classList.toggle(cls),
+          );
+          wrapper
+            .querySelectorAll(".marquee")
+            .forEach((m) => m.classList.toggle("marquee--vertical"));
+        });
+      }
     </script>
   </body>
 </html>
