@@ -12,90 +12,45 @@ function initCursor() {
   const cursor = document.querySelector('#cursor');
   if (!cursor) return;
 
-  let mouseX = 0, mouseY = 0;
-  let currentX = 0, currentY = 0;
-  const speed = 0.3;
+  // ✅ Desactivar en táctil
+  if (window.matchMedia('(pointer: coarse)').matches) {
+    cursor.style.display = 'none';
+    return;
+  }
 
-  document.addEventListener('mousemove', (e) => {
+  let mouseX = 0, mouseY = 0;
+  let cursorX = 0, cursorY = 0;
+
+  function lerp(start, end, factor) {
+    return start + (end - start) * factor;
+  }
+
+  window.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
+  }, { passive: true });
+
+  function animateCursor() {
+    cursorX = lerp(cursorX, mouseX, 0.15);
+    cursorY = lerp(cursorY, mouseY, 0.15);
+    cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  document.addEventListener('mousedown', () => {
+    cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%) scale(1.5)`;
+  });
+  document.addEventListener('mouseup', () => {
+    cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%) scale(1)`;
   });
 
-  function updateCursor() {
-    currentX += (mouseX - currentX) * speed;
-    currentY += (mouseY - currentY) * speed;
-    cursor.style.left = currentX + 'px'; // 👈 left/top, no transform
-    cursor.style.top = currentY + 'px';
-    requestAnimationFrame(updateCursor);
-  }
-  requestAnimationFrame(updateCursor);
-
-  document.addEventListener('mousedown', () => cursor.style.transform = 'translate(-50%, -50%) scale(1.5)');
-  document.addEventListener('mouseup',   () => cursor.style.transform = 'translate(-50%, -50%) scale(1)');
-
-  // Magnético — solo reacciona el cursor, el elemento no se mueve
+  // Magnético
   document.querySelectorAll('.magnetic').forEach((el) => {
     el.addEventListener('mouseenter', () => cursor.classList.add('magnet'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('magnet'));
   });
 }
-  
-  function initStickyHeader() {
-    const header = document.querySelector(".navbar");
-    const body = document.body;
-    let lastScroll = 0;
-    let isVisible = false;
-    const transitionDuration = 300;
-  
-    function updateNavbar() {
-      const currentScroll = window.scrollY;
-      const headerHeight = header.offsetHeight;
-  
-      if (currentScroll <= 0) {
-        // Scroll arriba del todo, quitamos todo
-        header.classList.remove("scrolled", "fixed-top", "nav-hide", "navbar-transitioning");
-        body.style.paddingTop = "0";
-        isVisible = false;
-        lastScroll = currentScroll;
-        return;
-      }
-  
-      if (currentScroll > headerHeight) {
-        if (lastScroll - currentScroll > 20) {
-          // Scroll hacia arriba: mostrar header INMEDIATAMENTE
-          if (!isVisible) {
-            header.classList.add("fixed-top");
-            body.style.paddingTop = `${headerHeight}px`;
-            // Forzar repaint antes de animar
-            requestAnimationFrame(() => {
-              header.classList.add("scrolled");
-              header.classList.remove("nav-hide");
-              isVisible = true;
-            });
-          }
-        } else if (currentScroll - lastScroll > 20) {
-          // Scroll hacia abajo: ocultar header con animación
-          if (isVisible) {
-            header.classList.add("nav-hide");
-            header.classList.remove("scrolled");
-            isVisible = false;
-            // NOTA: No quitamos fixed-top aquí para que reaparezca rápido
-            // fixed-top se quitará solo cuando scroll <= 0
-          }
-        }
-      } else {
-        // Scroll menor que header, quitar fixed-top para evitar solapamiento
-        header.classList.remove("scrolled", "fixed-top", "nav-hide", "navbar-transitioning");
-        body.style.paddingTop = "0";
-        isVisible = false;
-      }
-  
-      lastScroll = currentScroll;
-    }
-  
-    window.addEventListener("scroll", updateNavbar);
-    updateNavbar();
-  }
   
   
   

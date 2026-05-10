@@ -13,10 +13,6 @@
   --easing: cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-#scroll-content {
-  will-change: transform;
-  /* Smooth skewing performance */
-}
 
 /* ============================================================
    1. SELECCIÓN
@@ -127,14 +123,6 @@ a, button, .boton {
 /* ============================================================
    6. CURSOR PERSONALIZADO
    ============================================================ */
-/* ✅ Manéjalo solo en CSS */
-#cursor {
-  opacity: 0;
-  transition: transform 0.15s ease, opacity 0.3s ease;
-}
-html:hover #cursor {
-  opacity: 1;
-}
 
 /* --- CURSOR --- */
 #cursor {
@@ -149,6 +137,8 @@ html:hover #cursor {
   mix-blend-mode: difference;
   z-index: 9999;
   transform: translate(-50%, -50%);
+  /* ✅ Solo animar tamaño, nunca transform */
+  transition: width 0.3s ease, height 0.3s ease;
 }
 
 #cursor.magnet {
