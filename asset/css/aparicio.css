@@ -127,11 +127,18 @@ a, button, .boton {
 /* ============================================================
    6. CURSOR PERSONALIZADO
    ============================================================ */
+/* ✅ Manéjalo solo en CSS */
+#cursor {
+  opacity: 0;
+  transition: transform 0.15s ease, opacity 0.3s ease;
+}
+html:hover #cursor {
+  opacity: 1;
+}
 
 /* --- CURSOR --- */
 #cursor {
   position: fixed;
-  opacity: 0;
   top: 0;
   left: 0;
   width: 20px;
@@ -142,7 +149,6 @@ a, button, .boton {
   mix-blend-mode: difference;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease;
 }
 
 #cursor.magnet {

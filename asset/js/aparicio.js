@@ -19,7 +19,6 @@ function initCursor() {
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-    cursor.style.opacity = 1;
   });
 
   function updateCursor() {
@@ -33,10 +32,6 @@ function initCursor() {
 
   document.addEventListener('mousedown', () => cursor.style.transform = 'translate(-50%, -50%) scale(1.5)');
   document.addEventListener('mouseup',   () => cursor.style.transform = 'translate(-50%, -50%) scale(1)');
-
-
-  document.documentElement.addEventListener('mouseleave', () => cursor.style.opacity = 0);
-  document.documentElement.addEventListener('mouseenter', () => cursor.style.opacity = 1);
 
   // Magnético — solo reacciona el cursor, el elemento no se mueve
   document.querySelectorAll('.magnetic').forEach((el) => {
@@ -108,58 +103,67 @@ function initCursor() {
      3. Efecto de ruido animado sobre imágenes
   ----------------------------------- */
   function initNoiseEffect() {
-    const images = document.querySelectorAll('.main-image');
-    const canvases = document.querySelectorAll('.noise-overlay');
-  
-    if (images.length !== canvases.length) {
-      console.warn("Las cantidades de imágenes y canvas no coinciden.");
-      return;
+  const images = document.querySelectorAll('.main-image');
+  const canvases = document.querySelectorAll('.noise-overlay');
+
+  if (images.length !== canvases.length) {
+    console.warn("Las cantidades de imágenes y canvas no coinciden.");
+    return;
+  }
+
+  images.forEach((image, index) => {
+    const canvas = canvases[index];
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let offsetX = 0;
+    let offsetY = 0;
+    const movementSpeed = 0.2;
+
+    function generateNoise() {
+      const imageData = ctx.createImageData(canvas.width, canvas.height);
+      const data = imageData.data;
+
+      for (let i = 0; i < data.length; i += 4) {
+        const value = Math.random() * 255;
+        data[i] = value;
+        data[i + 1] = value;
+        data[i + 2] = value;
+        data[i + 3] = 30;
+      }
+
+      ctx.putImageData(imageData, 0, 0);
     }
-  
-    images.forEach((image, index) => {
-      const canvas = canvases[index];
-      if (!canvas) return;
-  
-      const ctx = canvas.getContext('2d');
+
+    function updateNoisePosition() {
+      offsetX += (Math.random() - 0.5) * movementSpeed;
+      offsetY += (Math.random() - 0.5) * movementSpeed;
+      offsetX = Math.max(-2, Math.min(2, offsetX));
+      offsetY = Math.max(-2, Math.min(2, offsetY));
+      canvas.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+    }
+
+    function animateNoise() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      generateNoise();
+      updateNoisePosition();
+    }
+
+    // ✅ CAMBIO: esperar dimensiones reales antes de inicializar
+    function startNoise() {
+      if (image.clientWidth === 0 || image.clientHeight === 0) return;
       canvas.width = image.clientWidth;
       canvas.height = image.clientHeight;
-  
-      let offsetX = 0;
-      let offsetY = 0;
-      const movementSpeed = 0.2;
-  
-      function generateNoise() {
-        const imageData = ctx.createImageData(canvas.width, canvas.height);
-        const data = imageData.data;
-  
-        for (let i = 0; i < data.length; i += 4) {
-          const value = Math.random() * 255;
-          data[i] = value;
-          data[i + 1] = value;
-          data[i + 2] = value;
-          data[i + 3] = 30;
-        }
-  
-        ctx.putImageData(imageData, 0, 0);
-      }
-  
-      function updateNoisePosition() {
-        offsetX += (Math.random() - 0.5) * movementSpeed;
-        offsetY += (Math.random() - 0.5) * movementSpeed;
-        offsetX = Math.max(-2, Math.min(2, offsetX));
-        offsetY = Math.max(-2, Math.min(2, offsetY));
-        canvas.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-      }
-  
-      function animateNoise() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        generateNoise();
-        updateNoisePosition();
-      }
-  
       setInterval(animateNoise, 100);
-    });
-  }
+    }
+
+    if (image.complete) {
+      startNoise();
+    } else {
+      image.addEventListener('load', startNoise);
+    }
+  });
+}
   
   /* -----------------------------------
      4. Texto rotativo animado (.word)
