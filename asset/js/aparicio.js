@@ -52,6 +52,59 @@ function initCursor() {
   });
 }
   
+
+  /* -----------------------------------
+     2. Mostrar/ocultar navbar al hacer scroll
+  ----------------------------------- */
+
+function initStickyHeader() {
+  const header = document.querySelector(".navbar");
+  const body = document.body;
+  let lastScroll = 0;
+  let isVisible = false;
+
+  function updateNavbar() {
+    const currentScroll = window.scrollY;
+    const headerHeight = header.offsetHeight;
+
+    if (currentScroll <= 0) {
+      header.classList.remove("scrolled", "fixed-top", "nav-hide", "navbar-transitioning");
+      body.style.paddingTop = "0";
+      isVisible = false;
+      lastScroll = currentScroll;
+      return;
+    }
+
+    if (currentScroll > headerHeight) {
+      if (lastScroll - currentScroll > 20) {
+        if (!isVisible) {
+          header.classList.add("fixed-top");
+          body.style.paddingTop = `${headerHeight}px`;
+          requestAnimationFrame(() => {
+            header.classList.add("scrolled");
+            header.classList.remove("nav-hide");
+            isVisible = true;
+          });
+        }
+      } else if (currentScroll - lastScroll > 20) {
+        if (isVisible) {
+          header.classList.add("nav-hide");
+          header.classList.remove("scrolled");
+          isVisible = false;
+        }
+      }
+    } else {
+      header.classList.remove("scrolled", "fixed-top", "nav-hide", "navbar-transitioning");
+      body.style.paddingTop = "0";
+      isVisible = false;
+    }
+
+    lastScroll = currentScroll;
+  }
+
+  window.addEventListener("scroll", updateNavbar, { passive: true });
+  updateNavbar();
+}
   
   
   /* -----------------------------------
